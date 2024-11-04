@@ -4,6 +4,7 @@ int main() {
 
 	//Variáveis
 	int numero_secreto;
+	int chute;
 
 	//Imprime cabeçalho do jogo
 	printf("—————————————————————————————————————————\n");
@@ -12,6 +13,9 @@ int main() {
 
 	//Atribuição de valor
 	numero_secreto = 42;
-
-	printf("%d", numero_secreto);
+	printf("\nDigite o seu chute: ");
+	
+	//Entrada de dados
+	scanf("%d", &chute);
+	printf("\nSeu chute é %d", chute);
 }
