@@ -7,9 +7,9 @@ int main() {
 	int chute;
 
 	//Imprime cabeçalho do jogo
-	printf("—————————————————————————————————————————\n");
-	printf("* Bem-vindo a nosso jogo de adivinhação *");
-	printf("\n—————————————————————————————————————————\n");
+	printf("******************************************\n");
+	printf("* Bem-vindo a nosso jogo de adivinhacao *");
+	printf("\n******************************************\n");
 
 	//Atribuição de valor
 	numero_secreto = 42;
@@ -17,5 +17,12 @@ int main() {
 	
 	//Entrada de dados
 	scanf("%d", &chute);
-	printf("\nSeu chute é %d", chute);
+	printf("Seu chute e %d", chute);
+	printf("\n\n");
+
+	if (chute == numero_secreto) {
+		printf("Parabens! Voce acertou!");
+	} else {
+		printf("Voce errou!");
+	}
 }
