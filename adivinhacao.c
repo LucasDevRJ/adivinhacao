@@ -26,6 +26,7 @@ int main() {
 		int acertou = chute == numero_secreto;
 		if (acertou) {
 			printf("Parabens! Voce acertou!");
+			break;
 		} else {
 			printf("Voce errou!\n");
 			
