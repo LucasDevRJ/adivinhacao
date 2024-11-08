@@ -28,6 +28,9 @@ int main() {
 		printf("\n\n");
 
 		int acertou = chute == numero_secreto;
+		int maior = chute > numero_secreto;
+		int menor = chute < numero_secreto;
+
 		if (acertou) {
 			printf("Parabens! Voce acertou!\n");
 			int mais_de_uma_tentativa = i > 1;
@@ -37,19 +40,11 @@ int main() {
 				printf("Foi %d tentativa.", i);
 			}
 			break;
+		} else if (maior) {
+			printf("Errou!\nSeu chute foi maior que o numero secreto.\n");
 		} else {
-			printf("Voce errou!\n");
-			
-			int maior = chute > numero_secreto;
-			if (maior) {
-				printf("Seu chute foi maior que o numero secreto.");
-			} else {
-				printf("Seu chute foi menor que o numero secreto.");
-			}
-
-			printf("\n");
+			printf("Errou!\nSeu chute foi menor que o numero secreto.\n");
 		}
 	}
-
 	printf("\nFim do jogo.");
 }
