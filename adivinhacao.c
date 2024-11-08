@@ -24,6 +24,13 @@ int main() {
 	
 		//Entrada de dados
 		scanf("%d", &chute);
+
+		if (chute < 0 || chute > 50) {
+			printf("\nDigite somente numeros positivos e menores que 50!\n");
+			i--;
+			continue;
+		}
+
 		printf("Seu chute e %d", chute);
 		printf("\n\n");
 
