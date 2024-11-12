@@ -1,69 +1,75 @@
 #include <stdio.h>
 
-#define CHANCES 3
+#define CHANCES 5
 
 int main() {
 
 	//Variáveis
 	int numero_secreto;
 	int chute;
-	int tentativas;
-	int ganhou;
-	int acertou;
+	int tentativas = 0;
+	int pontos = 0;
+	int acertos = 0;
+	int erros = 0;
+	char nome[50];
 
 	//Imprime cabeçalho do jogo
 	printf("******************************************\n");
 	printf("* Bem-vindo a nosso jogo de adivinhacao *");
 	printf("\n******************************************\n");
+	printf("Digite o seu nome:");
+	scanf("%s", nome);
 
 	//Atribuição de valor
 	numero_secreto = 7;
-	ganhou = 0;
-	tentativas = 0;
 
-	printf("Voce tem %d tentativas\n", CHANCES);
+	printf("\n");
+	printf("%s, voce tem %d tentativas\n", nome, CHANCES);
 	while (tentativas < CHANCES) {
-		printf("Tentativa numero %d", tentativas + 1);
+		printf("Tentativa numero %d de %d", tentativas + 1, CHANCES);
 		printf("\nDigite o seu chute: ");
 	
 		//Entrada de dados
 		scanf("%d", &chute);
 
 		if (chute < 0 || chute > 10) {
-			printf("\nDigite somente numeros positivos e menores ou igual a 10!\n");
+			printf("Digite somente numeros positivos e menores ou igual a 10!\n");
 			continue;
 		}
 
 		printf("Seu chute e %d", chute);
 		tentativas++;
 		
-		acertou = chute == numero_secreto;
+		int acertou = chute == numero_secreto;
 		int maior = chute > numero_secreto;
 
 		printf("\n\n");
 		if (acertou) {
 			printf("Parabens! Voce acertou!");
-			break;
+			pontos += 1000;
+			acertos++;
 		} else if (maior) {
-			printf("Errou!\nSeu chute foi maior que o numero secreto.\n");
+			printf("Voce errou!\nSeu chute foi maior que o numero secreto.\n");
+			erros++;
 		} else {
-			printf("Errou!\nSeu chute foi menor que o numero secreto.\n");
+			printf("Voce errou!\nSeu chute foi menor que o numero secreto.\n");
+			erros++;
 		}
 		printf("\n");
 	}
 
-	if (!acertou) {
+	if (pontos == 0) {
 		printf("---------\n");
 		printf("GAME OVER\n");
 		printf("   :(   \n");
 		printf("---------\n");
 	}
 
-	int mais_de_uma_tentativa = tentativas > 1;
-	if (mais_de_uma_tentativa) {
-		printf("\nForam %d tentativas.", tentativas);
-	} else {
-		printf("\nFoi %d tentativa.", tentativas);
-	}
+	printf("----------|Estatisticas do %s|----------", nome);
+	printf("\nQuantidade de tentativas: %d", tentativas);
+	printf("\nQuantidade de acertos: %d", acertos);
+	printf("\nQuantidade de erros: %d", erros);
+	printf("\nSua Pontuacao: %d", pontos);
+	printf("\n------------------------------------------");
 	printf("\nFim do jogo.");
 }
