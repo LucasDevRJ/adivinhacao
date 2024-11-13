@@ -8,7 +8,7 @@ int main() {
 	int numero_secreto;
 	int chute;
 	int tentativas = 0;
-	int pontos = 0;
+	double pontos = 0;
 	int acertos = 0;
 	int erros = 0;
 	char nome[50];
@@ -46,7 +46,8 @@ int main() {
 		printf("\n\n");
 		if (acertou) {
 			printf("Parabens! Voce acertou!");
-			pontos += 1000;
+			double calcula_pontos = (numero_secreto * 3.0)  / 2.0;
+			pontos += calcula_pontos;
 			acertos++;
 		} else if (maior) {
 			printf("Voce errou!\nSeu chute foi maior que o numero secreto.\n");
@@ -69,7 +70,7 @@ int main() {
 	printf("\nQuantidade de tentativas: %d", tentativas);
 	printf("\nQuantidade de acertos: %d", acertos);
 	printf("\nQuantidade de erros: %d", erros);
-	printf("\nSua Pontuacao: %d", pontos);
+	printf("\nSua Pontuacao: %f", pontos);
 	printf("\n------------------------------------------");
 	printf("\nFim do jogo.");
 }
