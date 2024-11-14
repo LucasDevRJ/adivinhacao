@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define CHANCES 5
 
@@ -11,7 +12,7 @@ int main() {
 	double pontos = 0;
 	int acertos = 0;
 	int erros = 0;
-	char nome[1];
+	char nome[50];
 
 	//Imprime cabeçalho do jogo
 	printf("******************************************\n");
@@ -20,20 +21,24 @@ int main() {
 	printf("Digite o seu nome:");
 	scanf("%s", nome);
 
-	//Atribuição de valor
-	numero_secreto = 7;
-
 	printf("\n");
 	printf("%s, voce tem %d tentativas\n", nome, CHANCES);
+
 	while (tentativas < CHANCES) {
+		numero_secreto = rand() % 5;
+		if (numero_secreto == 0) {
+			numero_secreto = rand() % 5;
+			continue;
+		}
+
 		printf("Tentativa numero %d de %d", tentativas + 1, CHANCES);
 		printf("\nDigite o seu chute: ");
 	
 		//Entrada de dados
 		scanf("%d", &chute);
 
-		if (chute < 0 || chute > 10) {
-			printf("Digite somente numeros positivos e menores ou igual a 10!\n");
+		if (chute <= 0 || chute > 5) {
+			printf("Digite um numero entre 1 e 5!\n");
 			continue;
 		}
 
@@ -46,7 +51,7 @@ int main() {
 		printf("\n\n");
 		if (acertou) {
 			printf("Parabens! Voce acertou!");
-			double calcula_pontos = (numero_secreto * 55.3)  / 1.5;
+			double calcula_pontos = (numero_secreto * 134.6)  / 1.7;
 			pontos += calcula_pontos;
 			acertos++;
 		} else if (maior) {
