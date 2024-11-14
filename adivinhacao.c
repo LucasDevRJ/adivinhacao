@@ -11,7 +11,7 @@ int main() {
 	double pontos = 0;
 	int acertos = 0;
 	int erros = 0;
-	char nome[50];
+	char nome[1];
 
 	//Imprime cabeçalho do jogo
 	printf("******************************************\n");
@@ -46,7 +46,7 @@ int main() {
 		printf("\n\n");
 		if (acertou) {
 			printf("Parabens! Voce acertou!");
-			double calcula_pontos = (numero_secreto * 3.0)  / 2.0;
+			double calcula_pontos = (numero_secreto * 55.3)  / 1.5;
 			pontos += calcula_pontos;
 			acertos++;
 		} else if (maior) {
@@ -70,7 +70,7 @@ int main() {
 	printf("\nQuantidade de tentativas: %d", tentativas);
 	printf("\nQuantidade de acertos: %d", acertos);
 	printf("\nQuantidade de erros: %d", erros);
-	printf("\nSua Pontuacao: %f", pontos);
+	printf("\nSua Pontuacao: %.2f", pontos);
 	printf("\n------------------------------------------");
 	printf("\nFim do jogo.");
 }
