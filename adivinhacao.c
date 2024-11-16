@@ -63,7 +63,7 @@ int main() {
 
 		printf("\n");
 
-		for (int tentativas = 0; tentativas < chances; tentativas++) {
+		while (tentativas < chances) {
 			printf("Digite o seu chute: ");	
 			scanf("%d", &chute);
 
@@ -116,6 +116,7 @@ int main() {
 			printf("%d\n", numero_secreto);
 		
 			printf("\nTentativa numero %d de %d", tentativas + 1, chances);
+			tentativas++;
 			
 			int acertou = chute == numero_secreto;
 			int maior = chute > numero_secreto;
