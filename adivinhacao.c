@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 #define DECORACAO "******************************************"
 
 int main() {
 
-	//Variáveis
 	int numero_secreto;
 	int chute;
 	int tentativas = 0;
@@ -20,164 +20,178 @@ int main() {
 	int valor_maximo;
 	int chances = 20;
 	int bonus_dificuldade;
-
-
-	printf("\n");
-	printf("                          _______\n");
-	printf("                         | ___  o|\n");
-	printf("                         |[_-_]_ |\n");
-	printf("      ______________     |[_____]|\n");
-	printf("     |.------------.|    |[_____]|\n");
-	printf("     ||            ||    |[====o]|\n");	
-	printf("     ||            ||    |[_.--_]|\n");
-	printf("     ||            ||    |[_____]|\n");
-	printf("     ||            ||    |      :|\n");
-	printf("     ||____________||    |      :|\n");
-	printf(" .==.|''  ......    |.==.|      :|\n");
-	printf(" |::| '-.________.-' |::||      :|\n");
-	printf(" |''|  (__________)-.|''||______:|\n");
-	printf(" `''`_.............._\\''` ______ \n");
-	printf("    /:::::::::::'':::\\`;' -.-.  `\\ \n");
-	printf("   /::=========.:.-::'\\ \\ \\--\\    \\ \n");
-	printf("   \\`''''''''''''''''`/  \\ \\__)    \\ \n");
-	printf("    `''''''''''''''''`    '========' \n");
-
-	printf("\n");
-	//Imprime cabeçalho do jogo
-	printf("%s\n", DECORACAO);
-	printf("* Bem-vindo a nosso jogo de adivinhacao *");
-	printf("\n%s\n", DECORACAO);
-
-	printf("Digite o seu nome:");
-	scanf("%s", nome);
-
-	printf("\n");
-	printf("1 - Nivel Facil: numero de 0 a 5 e 20 chances\n");
-	printf("2 - Nivel Normal: numero de 0 20 e 15 chances\n");
-	printf("3 - Nivel Dificil: numero de 0 a 40 e 10 chances\n");
-	printf("Digite o nivel desejado: ");
-	scanf("%d", &nivel_dificuldade);
-
-	printf("\n");
+	char resposta = 'S';
 
 	int segundos = time(0);
 	srand(segundos);
 
-	while (tentativas < chances) {
-		printf("Digite o seu chute: ");	
-		scanf("%d", &chute);
+	while (resposta == 'S') {
+		printf("\n");
+		printf("                          _______\n");
+		printf("                         | ___  o|\n");
+		printf("                         |[_-_]_ |\n");
+		printf("      ______________     |[_____]|\n");
+		printf("     |.------------.|    |[_____]|\n");
+		printf("     ||            ||    |[====o]|\n");	
+		printf("     ||            ||    |[_.--_]|\n");
+		printf("     ||            ||    |[_____]|\n");
+		printf("     ||            ||    |      :|\n");
+		printf("     ||____________||    |      :|\n");
+		printf(" .==.|''  ......    |.==.|      :|\n");
+		printf(" |::| '-.________.-' |::||      :|\n");
+		printf(" |''|  (__________)-.|''||______:|\n");
+		printf(" `''`_.............._\\''` ______ \n");
+		printf("    /:::::::::::'':::\\`;' -.-.  `\\ \n");
+		printf("   /::=========.:.-::'\\ \\ \\--\\    \\ \n");
+		printf("   \\`''''''''''''''''`/  \\ \\__)    \\ \n");
+		printf("    `''''''''''''''''`    '========' \n");
 
-		int numero_randomico = rand();
+		printf("\n");
+		printf("%s\n", DECORACAO);
+		printf("* Bem-vindo a nosso jogo de adivinhacao *");
+		printf("\n%s\n", DECORACAO);
 
-		switch(nivel_dificuldade) {
-			case 1:
-				valor_maximo = 5;
-				bonus_dificuldade = 10.0;
-				numero_secreto = numero_randomico % valor_maximo;
-				strcpy(dificuldade, "Facil");
+		printf("Digite o seu primeiro nome:");
+		scanf("%s", nome);
 
-				if (chute < 0 || chute > 5) {
-					printf("Digite um numero entre 0 a 5!\n");
-					continue;
-				}
-			break;
+		printf("\n");
+		printf("1 - Nivel Facil: numero de 0 a 5 e 20 chances\n");
+		printf("2 - Nivel Normal: numero de 0 20 e 15 chances\n");
+		printf("3 - Nivel Dificil: numero de 0 a 40 e 10 chances\n");
+		printf("Digite o nivel desejado: ");
+		scanf("%d", &nivel_dificuldade);
 
-			case 2:
-				chances = 15;
-				valor_maximo = 20;
-				bonus_dificuldade = 30.0;
-				numero_secreto = numero_randomico % valor_maximo;
-				strcpy(dificuldade, "Normal");
+		printf("\n");
 
-				if (chute < 0 || chute > 20) {
-					printf("Digite um numero entre 0 a 20!\n");
-					continue;
-				}
-			break;
+		for (int tentativas = 0; tentativas < chances; tentativas++) {
+			printf("Digite o seu chute: ");	
+			scanf("%d", &chute);
 
-			case 3:
-				chances = 10;
-				valor_maximo = 40;
-				bonus_dificuldade = 50.0;
-				numero_secreto = numero_randomico % valor_maximo;
-				strcpy(dificuldade, "Dificil");
+			int numero_randomico = rand();
 
-				if (chute < 0 || chute > 40) {
-					printf("Digite um numero entre 0 a 40!\n");
-					continue;
-				}
-			break;
+			switch(nivel_dificuldade) {
+				case 1:
+					valor_maximo = 5;
+					bonus_dificuldade = 10.0;
+					numero_secreto = numero_randomico % valor_maximo;
+					strcpy(dificuldade, "Facil");
 
-			default:
-				printf("Valor invalido! Digite um numero entre 1 a 3!\n");
-			break;
-		}
+					if (chute < 0 || chute > 5) {
+						printf("Digite um numero entre 0 a 5!\n");
+						continue;
+					}
+				break;
 
-		printf("%d\n", numero_secreto);
-	
-		printf("\nTentativa numero %d de %d", tentativas + 1, chances);
-		tentativas++;
+				case 2:
+					chances = 15;
+					valor_maximo = 20;
+					bonus_dificuldade = 30.0;
+					numero_secreto = numero_randomico % valor_maximo;
+					strcpy(dificuldade, "Normal");
+
+					if (chute < 0 || chute > 20) {
+						printf("Digite um numero entre 0 a 20!\n");
+						continue;
+					}
+				break;
+
+				case 3:
+					chances = 10;
+					valor_maximo = 40;
+					bonus_dificuldade = 50.0;
+					numero_secreto = numero_randomico % valor_maximo;
+					strcpy(dificuldade, "Dificil");
+
+					if (chute < 0 || chute > 40) {
+						printf("Digite um numero entre 0 a 40!\n");
+						continue;
+					}
+				break;
+
+				default:
+					printf("Valor invalido! Digite um numero entre 1 a 3!\n");
+				break;
+			}
+
+			printf("%d\n", numero_secreto);
 		
-		int acertou = chute == numero_secreto;
-		int maior = chute > numero_secreto;
+			printf("\nTentativa numero %d de %d", tentativas + 1, chances);
+			
+			int acertou = chute == numero_secreto;
+			int maior = chute > numero_secreto;
 
-		printf("\n\n");
-		if (acertou) {
-			printf("Parabens! Voce acertou!\n");
-			double calcula_pontos = (numero_secreto * bonus_dificuldade * 83.4)  / 2.3;
-			pontos += calcula_pontos;
-			acertos++;
-		} else if (maior) {
-			printf("Voce errou!\nSeu chute foi maior que o numero secreto.\n");
-			erros++;
-		} else {
-			printf("Voce errou!\nSeu chute foi menor que o numero secreto.\n");
-			erros++;
+			printf("\n\n");
+			if (acertou) {
+				printf("Parabens! Voce acertou!\n");
+				double calcula_pontos = (numero_secreto * bonus_dificuldade * 83.4)  / 2.3;
+				pontos += calcula_pontos;
+				acertos++;
+			} else if (maior) {
+				printf("Voce errou!\nSeu chute foi maior que o numero secreto.\n");
+				erros++;
+			} else {
+				printf("Voce errou!\nSeu chute foi menor que o numero secreto.\n");
+				erros++;
+			}
+			printf("\n");
 		}
+
+		if (pontos == 0) {
+			printf("         ---------\n");
+			printf("         GAME OVER\n");
+			printf("            :(   \n");
+			printf("         ---------\n");
+
+			printf("\n");
+			printf("         _______ \n");
+			printf("        |.-----.| \n");
+			printf("        ||x . x|| \n");
+			printf("        ||_.-._|| \n");
+			printf("        `--)-(--` \n");
+			printf("       __[=== o]___ \n");
+			printf("      |:::::::::::|\\  \n");
+			printf("      `-=========-` () \n");
+			printf("\n");
+		}
+
+		printf("----------|Estatisticas do %s|----------", nome);
+		printf("\nQuantidade de tentativas: %d", tentativas);
+		printf("\nQuantidade de acertos: %d", acertos);
+		printf("\nQuantidade de erros: %d", erros);
+		printf("\nSua Pontuacao: %.2f", pontos);
+		printf("\nNivel de dificuldade: %s", dificuldade);
+		printf("\n------------------------------------------");
+
 		printf("\n");
+		printf("   +--------------+ \n");
+		printf("   |.------------.| \n");
+		printf("   ||            || \n");
+		printf("   ||            || \n");
+		printf("   ||            || \n");
+		printf("   ||            || \n");
+		printf("   |+------------+| \n");
+		printf("   +-..--------..-+ \n");
+		printf("   .--------------. \n");
+		printf("  / /============\\ \\ \n");
+		printf(" / /==============\\ \\ \n");
+		printf("/____________________\\  \n");
+		printf("\\____________________/     \n");
+		printf("\n");
+
+		printf("Deseja jogar novamente? \n");
+		printf("S - Sim\n");
+		printf("N - Nao\n");
+		printf("Digite a opcao desejada: ");
+		scanf("%s", &resposta);
+
+		resposta = toupper(resposta);
+
+		while (resposta != 'S' && resposta != 'N') {
+			printf("Digite S ou N!\n");
+			printf("Digite a opcao desejada: ");
+			scanf("%s", &resposta);
+		}
 	}
-
-	if (pontos == 0) {
-		printf("         ---------\n");
-		printf("         GAME OVER\n");
-		printf("            :(   \n");
-		printf("         ---------\n");
-
-		printf("\n");
-		printf("         _______ \n");
-		printf("        |.-----.| \n");
-		printf("        ||x . x|| \n");
-		printf("        ||_.-._|| \n");
-		printf("        `--)-(--` \n");
-		printf("       __[=== o]___ \n");
-		printf("      |:::::::::::|\\  \n");
-		printf("      `-=========-` () \n");
-		printf("\n");
-	}
-
-	printf("----------|Estatisticas do %s|----------", nome);
-	printf("\nQuantidade de tentativas: %d", tentativas);
-	printf("\nQuantidade de acertos: %d", acertos);
-	printf("\nQuantidade de erros: %d", erros);
-	printf("\nSua Pontuacao: %.2f", pontos);
-	printf("\nNivel de dificuldade: %s", dificuldade);
-	printf("\n------------------------------------------");
-
-	printf("\n");
-	printf("   +--------------+ \n");
-	printf("   |.------------.| \n");
-	printf("   ||            || \n");
-	printf("   ||            || \n");
-	printf("   ||            || \n");
-	printf("   ||            || \n");
-	printf("   |+------------+| \n");
-	printf("   +-..--------..-+ \n");
-	printf("   .--------------. \n");
-	printf("  / /============\\ \\ \n");
-	printf(" / /==============\\ \\ \n");
-	printf("/____________________\\  \n");
-	printf("\\____________________/     \n");
-	printf("\n");
 
 	printf("\nFim do jogo.");
 }
